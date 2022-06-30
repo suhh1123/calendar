@@ -1,41 +1,60 @@
 .calendar-body {
+  /* remove it, just for looking good as a standalone app*/
+  width: 90%;
   margin: auto;
   margin-top: 50px;
-  width: 90%;
+  margin-bottom: 50px;
+  font-family: "Oately Regular", Helvetica, Arial, sans-serif;
+}
+
+.calendar-week-body {
   display: grid;
   grid-template-columns: repeat(7, minmax(40px, 1fr));
-  grid-template-rows: 50px;
-  grid-auto-rows: minmax(120px, auto);
+  grid-template-rows: 30px;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-top: 1px solid;
+  border-color: lightgray;
+}
+
+.calendar-day-body {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(40px, 1fr));
+  grid-auto-rows: minmax(150px, auto);
   grid-gap: 1px;
   background-color: lightgray;
   border: 1px solid;
   border-color: lightgray;
 }
 
-.day {
+.day-of-month {
   background-color: white;
   text-align: left;
-  padding: 14px 0px;
+  padding: 12px 0px;
   font-size: 14px;
   border-color: lightgray;
   display: flex;
   flex-direction: column;
 }
 
-.week-day {
+.day-of-week {
   background-color: white;
-  font-size: 16px;
-  line-height: 50px;
+  font-size: 13px;
   font-weight: bold;
+  padding: 8px 0 5px 0;
   color: lightgray;
   text-transform: uppercase;
   text-align: center;
 }
 
-.span-day {
+.today {
+  background-color: #eef0f4;
+}
+
+.date-number {
   padding-left: 10px;
 }
 
-.span-pad-day {
+.pad-date-number {
   color: lightgray;
 }
