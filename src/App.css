@@ -1,38 +1,41 @@
-.App {
+.calendar-body {
+  margin: auto;
+  margin-top: 50px;
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(40px, 1fr));
+  grid-template-rows: 50px;
+  grid-auto-rows: minmax(120px, auto);
+  grid-gap: 1px;
+  background-color: lightgray;
+  border: 1px solid;
+  border-color: lightgray;
+}
+
+.day {
+  background-color: white;
+  text-align: left;
+  padding: 14px 0px;
+  font-size: 14px;
+  border-color: lightgray;
+  display: flex;
+  flex-direction: column;
+}
+
+.week-day {
+  background-color: white;
+  font-size: 16px;
+  line-height: 50px;
+  font-weight: bold;
+  color: lightgray;
+  text-transform: uppercase;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.span-day {
+  padding-left: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.span-pad-day {
+  color: lightgray;
 }
