@@ -103,19 +103,17 @@ function App() {
             setCurrentYearAndMonth({ year: newYear, month: newMonth });
           }}
         >
-          Left
+          Last Month
         </button>
         <button
           onClick={() => {
             const { year, month } = currentYearAndMonth;
             const newYear = month === 12 ? year + 1 : year;
             const newMonth = month === 12 ? 1 : month + 1;
-            console.log(newYear);
-            console.log(newMonth);
             setCurrentYearAndMonth({ year: newYear, month: newMonth });
           }}
         >
-          Right
+          Next Month
         </button>
       </div>
     </div>
