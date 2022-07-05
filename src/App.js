@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import dailyEvents from "./daily_events";
 
 function App() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -43,17 +44,65 @@ function App() {
   const prePadDays = getPrePadDays(currentYear, currentMonth);
   const postPadDays = (7 - ((days + prePadDays) % 7)) % 7;
 
+  // render daily events
+  const getRenderDailyEvents = (dailyEvents) => {
+    let renderDailyEvents = [...Array(days)].map((e) => []);
+
+    dailyEvents.forEach((event, idx) => {
+      // render birthday members
+      renderBirthdayMembers(renderDailyEvents, idx + 1, event.birthdayMembers);
+
+      // render bank holiday
+      renderBankHoliday(renderDailyEvents, idx + 1, event.bankHoliday);
+
+      // render company holiday
+      renderCompanyHoliday(renderDailyEvents, idx + 1, event.companyHoliday);
+    });
+
+    return renderDailyEvents;
+  };
+
+  const renderBirthdayMembers = (renderDailyEvents, date, data) => {
+    // render tooltip along with the label
+    let slot = renderDailyEvents[date - 1];
+    if (data.length >= 5) {
+      slot.push(<div>{`${data.length} Birthday Member`}</div>);
+    } else if (0 < data.length && data.length < 5) {
+      data.forEach((member) => {
+        slot.push(
+          <div>{`${member.firstName} ${member.lastName}'s birthday`}</div>
+        );
+      });
+    }
+  };
+
+  const renderBankHoliday = (renderDailyEvents, date, data) => {
+    let slot = renderDailyEvents[date - 1];
+    if (data) {
+      slot.push(<div>bank holiday</div>);
+    }
+  };
+
+  const renderCompanyHoliday = (renderDailyEvents, date, data) => {
+    let slot = renderDailyEvents[date - 1];
+    data.forEach((holiday) => {
+      slot.push(<div>{holiday}</div>);
+    });
+  };
+
+  const renderDailyEvents = getRenderDailyEvents(dailyEvents);
+
   useEffect(() => {
-    console.log(currentYear);
-    console.log(currentMonth);
-    console.log(lastYear);
-    console.log(nextYear);
-    console.log(lastMonth);
-    console.log(nextMonth);
-    console.log(days);
-    console.log(prePadDays);
-    console.log(postPadDays);
-    console.log(currentYearAndMonth);
+    // console.log(currentYear);
+    // console.log(currentMonth);
+    // console.log(lastYear);
+    // console.log(nextYear);
+    // console.log(lastMonth);
+    // console.log(nextMonth);
+    // console.log(days);
+    // console.log(prePadDays);
+    // console.log(postPadDays);
+    // console.log(currentYearAndMonth);
   }, []);
 
   return (
@@ -84,6 +133,7 @@ function App() {
               key={"day-" + i}
             >
               <span className="date-number">{i + 1}</span>
+              {renderDailyEvents[i]}
             </div>
           )),
           [...Array(postPadDays)].map((x, i) => (
